@@ -1,0 +1,66 @@
+
+[
+  {
+    "name": "Noodles",
+    "cuisine": "Chinese",
+    "price": 10,
+    "id": 1,
+    "imageName": "noodles"
+  },
+  {
+    "name": "Pizza",
+    "cuisine": "Italian",
+    "price": 5,
+    "id": 2,
+    "imageName": "pizza"
+  },
+  {
+    "name": "Burger",
+    "cuisine": "American",
+    "price": 5,
+    "id": 3,
+    "imageName": "burger"
+  },
+  {
+    "name": "French Fries",
+    "cuisine": "American",
+    "price": 1,
+    "id": 4,
+    "imageName": "frenchFries"
+  },
+  {
+    "name": "Sushi",
+    "cuisine": "Japanese",
+    "price": 5,
+    "id": 5,
+    "imageName": "sushi"
+  },
+  {
+    "name": "Dosa",
+    "cuisine": "Indian",
+    "price": 1,
+    "id": 6,
+    "imageName": "idly"
+  },
+  {
+    "name": "Hendl",
+    "cuisine": "German",
+    "price": 10,
+    "id": 7,
+    "imageName": "hendl"
+  },
+  {
+    "name": "Shawarma",
+    "cuisine": "Middle Eastern",
+    "price": 10,
+    "id": 8,
+    "imageName": "shawarma"
+  },
+  {
+    "name": "Tacos de Papa",
+    "cuisine": "Mexican",
+    "price": 10,
+    "id": 9,
+    "imageName": "tacosDePapa"
+  }
+]
