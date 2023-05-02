@@ -6,12 +6,21 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 @main
 struct PlantCareApp: App {
+    
+    @StateObject private var manager: DataManager = DataManager()
+    
     var body: some Scene {
         WindowGroup {
+            
+           
+            
             ContentView()
+                .environmentObject(manager)
+                .environment(\.managedObjectContext, manager.container.viewContext)
         }
     }
 }

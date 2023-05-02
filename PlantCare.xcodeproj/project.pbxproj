@@ -9,11 +9,20 @@
 /* Begin PBXBuildFile section */
 		8D8EC34C29F60610005E51DB /* PlantCareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8EC34B29F60610005E51DB /* PlantCareApp.swift */; };
 		8D8EC34E29F60610005E51DB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8EC34D29F60610005E51DB /* ContentView.swift */; };
-		8D8EC35029F60614005E51DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D8EC34F29F60614005E51DB /* Assets.xcassets */; };
 		8D8EC35329F60614005E51DB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D8EC35229F60614005E51DB /* Preview Assets.xcassets */; };
 		8D8EC35A29F60655005E51DB /* menuData.json in Resources */ = {isa = PBXBuildFile; fileRef = 8D8EC35929F60655005E51DB /* menuData.json */; };
 		8D8EC35C29F60691005E51DB /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8EC35B29F60691005E51DB /* Dish.swift */; };
 		8D8EC35E29F606AA005E51DB /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8EC35D29F606AA005E51DB /* API.swift */; };
+		8D8EC36029F607BF005E51DB /* MenuRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8EC35F29F607BF005E51DB /* MenuRow.swift */; };
+		8D8EC36429F609D1005E51DB /* MenuList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8EC36329F609D1005E51DB /* MenuList.swift */; };
+		8DCD20D32A01A1B400CDEC2A /* Reminders.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DCD20D12A01A1B400CDEC2A /* Reminders.xcdatamodeld */; };
+		8DCD20D52A01A23400CDEC2A /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCD20D42A01A23400CDEC2A /* DataManager.swift */; };
+		8DCD20D72A01A2AC00CDEC2A /* ReminderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCD20D62A01A2AC00CDEC2A /* ReminderItem.swift */; };
+		8DE392B929F6CFBB006ED8D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D8EC34F29F60614005E51DB /* Assets.xcassets */; };
+		8DE392BB29F6D1EB006ED8D4 /* pizza.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DE392BA29F6D1EB006ED8D4 /* pizza.png */; };
+		8DE392BD29F6D3A6006ED8D4 /* CustomNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE392BC29F6D3A6006ED8D4 /* CustomNavigationView.swift */; };
+		8DE392BF29F6D5CA006ED8D4 /* AddPlantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE392BE29F6D5CA006ED8D4 /* AddPlantView.swift */; };
+		8DFC45C729FDB9A800DCD0F7 /* DateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFC45C629FDB9A800DCD0F7 /* DateTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +34,15 @@
 		8D8EC35929F60655005E51DB /* menuData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = menuData.json; sourceTree = "<group>"; };
 		8D8EC35B29F60691005E51DB /* Dish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
 		8D8EC35D29F606AA005E51DB /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		8D8EC35F29F607BF005E51DB /* MenuRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuRow.swift; sourceTree = "<group>"; };
+		8D8EC36329F609D1005E51DB /* MenuList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuList.swift; sourceTree = "<group>"; };
+		8DCD20D22A01A1B400CDEC2A /* Reminder.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Reminder.xcdatamodel; sourceTree = "<group>"; };
+		8DCD20D42A01A23400CDEC2A /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		8DCD20D62A01A2AC00CDEC2A /* ReminderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderItem.swift; sourceTree = "<group>"; };
+		8DE392BA29F6D1EB006ED8D4 /* pizza.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pizza.png; path = PlantCare/Assets.xcassets/pizza.imageset/pizza.png; sourceTree = "<group>"; };
+		8DE392BC29F6D3A6006ED8D4 /* CustomNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationView.swift; sourceTree = "<group>"; };
+		8DE392BE29F6D5CA006ED8D4 /* AddPlantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlantView.swift; sourceTree = "<group>"; };
+		8DFC45C629FDB9A800DCD0F7 /* DateTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +59,7 @@
 		8D8EC33F29F60610005E51DB = {
 			isa = PBXGroup;
 			children = (
+				8DE392BA29F6D1EB006ED8D4 /* pizza.png */,
 				8D8EC34A29F60610005E51DB /* PlantCare */,
 				8D8EC34929F60610005E51DB /* Products */,
 			);
@@ -57,6 +76,7 @@
 		8D8EC34A29F60610005E51DB /* PlantCare */ = {
 			isa = PBXGroup;
 			children = (
+				8DCD20D02A01A18700CDEC2A /* Model */,
 				8D8EC34B29F60610005E51DB /* PlantCareApp.swift */,
 				8D8EC34D29F60610005E51DB /* ContentView.swift */,
 				8D8EC34F29F60614005E51DB /* Assets.xcassets */,
@@ -64,6 +84,12 @@
 				8D8EC35929F60655005E51DB /* menuData.json */,
 				8D8EC35B29F60691005E51DB /* Dish.swift */,
 				8D8EC35D29F606AA005E51DB /* API.swift */,
+				8D8EC35F29F607BF005E51DB /* MenuRow.swift */,
+				8D8EC36329F609D1005E51DB /* MenuList.swift */,
+				8DE392BC29F6D3A6006ED8D4 /* CustomNavigationView.swift */,
+				8DE392BE29F6D5CA006ED8D4 /* AddPlantView.swift */,
+				8DFC45C629FDB9A800DCD0F7 /* DateTextField.swift */,
+				8DCD20D42A01A23400CDEC2A /* DataManager.swift */,
 			);
 			path = PlantCare;
 			sourceTree = "<group>";
@@ -74,6 +100,15 @@
 				8D8EC35229F60614005E51DB /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		8DCD20D02A01A18700CDEC2A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8DCD20D12A01A1B400CDEC2A /* Reminders.xcdatamodeld */,
+				8DCD20D62A01A2AC00CDEC2A /* ReminderItem.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,8 +170,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D8EC35A29F60655005E51DB /* menuData.json in Resources */,
+				8DE392B929F6CFBB006ED8D4 /* Assets.xcassets in Resources */,
 				8D8EC35329F60614005E51DB /* Preview Assets.xcassets in Resources */,
-				8D8EC35029F60614005E51DB /* Assets.xcassets in Resources */,
+				8DE392BB29F6D1EB006ED8D4 /* pizza.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,10 +183,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DE392BF29F6D5CA006ED8D4 /* AddPlantView.swift in Sources */,
+				8DE392BD29F6D3A6006ED8D4 /* CustomNavigationView.swift in Sources */,
 				8D8EC35C29F60691005E51DB /* Dish.swift in Sources */,
 				8D8EC34E29F60610005E51DB /* ContentView.swift in Sources */,
 				8D8EC35E29F606AA005E51DB /* API.swift in Sources */,
+				8DCD20D32A01A1B400CDEC2A /* Reminders.xcdatamodeld in Sources */,
+				8DFC45C729FDB9A800DCD0F7 /* DateTextField.swift in Sources */,
 				8D8EC34C29F60610005E51DB /* PlantCareApp.swift in Sources */,
+				8DCD20D52A01A23400CDEC2A /* DataManager.swift in Sources */,
+				8D8EC36429F609D1005E51DB /* MenuList.swift in Sources */,
+				8DCD20D72A01A2AC00CDEC2A /* ReminderItem.swift in Sources */,
+				8D8EC36029F607BF005E51DB /* MenuRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,6 +323,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PlantCare/Preview Content\"";
+				DEVELOPMENT_TEAM = E2UHB3N82W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -291,7 +336,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.broadcaster.PlantCare;
+				PRODUCT_BUNDLE_IDENTIFIER = com.broadcaster.PlantCare.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -307,6 +352,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PlantCare/Preview Content\"";
+				DEVELOPMENT_TEAM = E2UHB3N82W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -319,7 +365,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.broadcaster.PlantCare;
+				PRODUCT_BUNDLE_IDENTIFIER = com.broadcaster.PlantCare.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -349,6 +395,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8DCD20D12A01A1B400CDEC2A /* Reminders.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8DCD20D22A01A1B400CDEC2A /* Reminder.xcdatamodel */,
+			);
+			currentVersion = 8DCD20D22A01A1B400CDEC2A /* Reminder.xcdatamodel */;
+			path = Reminders.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8D8EC34029F60610005E51DB /* Project object */;
 }
