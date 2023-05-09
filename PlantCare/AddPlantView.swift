@@ -42,6 +42,7 @@ struct AddPlantView: View {
     @State var image: UIImage? = UIImage()
     @State private var showingAlert = false
     @State private var alertMessage : String = ""
+    @State var selectedItem = Reminder()
     
     var body: some View {
         VStack(alignment: .center,spacing: 30) {
@@ -60,7 +61,7 @@ struct AddPlantView: View {
                     }
                 }
                 
-                Image(uiImage: self.image!)
+                Image(uiImage: (self.image ?? UIImage(systemName: "photo.circle"))!)
                     .resizable()
                     .cornerRadius(75)
                     .padding(.all, 4)
@@ -91,17 +92,41 @@ struct AddPlantView: View {
                 }
                 
                 let pickedImage = image?.jpegData(compressionQuality: 1.0)
-                let newTask = Reminder(context: viewContext)
-                newTask.name = nickName
-                newTask.type = typeOfPlant
-                newTask.note = cutomerNotes
-                newTask.date = selectedDate
-                newTask.image = pickedImage
-                try? viewContext.save()
-                sendNotification()
+                
+                if selectedItem.managedObjectContext != nil {
+                    selectedItem.name = nickName
+                    selectedItem.type = typeOfPlant
+                    selectedItem.note = cutomerNotes
+                    selectedItem.date = selectedDate
+                    selectedItem.image = pickedImage
+                    try? viewContext.save()
+                } else {
+                    let newTask = Reminder(context: viewContext)
+                    newTask.name = nickName
+                    newTask.type = typeOfPlant
+                    newTask.note = cutomerNotes
+                    newTask.date = selectedDate
+                    newTask.image = pickedImage
+                    try? viewContext.save()
+                    sendNotification()
+                }
+                
                 presentationMode.wrappedValue.dismiss()
             }.buttonStyle(.borderedProminent).frame(maxWidth: .infinity)
         }.padding(20)
+        .onAppear(perform: fetch)
+    }
+    
+    private func fetch() {
+        if selectedItem.managedObjectContext != nil {
+                       print("***AAA \(selectedItem)")
+                       nickName = selectedItem.name ?? ""
+                       typeOfPlant = selectedItem.type ?? ""
+                       cutomerNotes = selectedItem.note ?? ""
+                       image =  UIImage(data: selectedItem.image ?? Data())
+        } else {
+            print("***CCC \(selectedItem)")
+        }
     }
 }
 

@@ -29,25 +29,28 @@ struct ContentView: View {
         NavigationStack {
             List {
                 ForEach(reminderItems,id: \.self) { item in
-                    HStack{
-                        Image(uiImage: (UIImage(data: item.image ?? Data()) ?? UIImage(systemName: "photo.circle")) ?? UIImage())
-                            .renderingMode(.original)
-                            .resizable()
-                            .frame(width: 70.0, height: 70.0)
-                            .cornerRadius(50)
-                        VStack(alignment: .leading, spacing: 10) {
-                            Text(verbatim: item.name ?? "-")
-                            Text(verbatim: item.type ?? "-")
-                            Text(verbatim: item.note ?? "-")
-                        }.padding(10)
-                        Button(action: {
-                            print("button pressed")
-                            viewContext.delete(item)
-                        }) {
-                            Image(systemName: "trash")
+                    NavigationLink(destination: AddPlantView(selectedItem : item)) {
+                        HStack{
+                            Image(uiImage: (UIImage(data: item.image ?? Data()) ?? UIImage(systemName: "photo.circle")) ?? UIImage())
                                 .renderingMode(.original)
-                        }.frame(maxWidth: .infinity, alignment: .trailing)
+                                .resizable()
+                                .frame(width: 70.0, height: 70.0)
+                                .cornerRadius(50)
+                            VStack(alignment: .leading, spacing: 10) {
+                                Text(verbatim: item.name ?? "-")
+                                Text(verbatim: item.type ?? "-")
+                                Text(verbatim: item.note ?? "-")
+                            }.padding(10)
+                            Button(action: {
+                                print("button pressed")
+                                viewContext.delete(item)
+                            }) {
+                                Image(systemName: "trash")
+                                    .renderingMode(.original)
+                            }.frame(maxWidth: .infinity, alignment: .trailing)
+                        }
                     }
+                    
                     
                 }
             }
@@ -57,7 +60,7 @@ struct ContentView: View {
                     HStack {
                         Spacer().frame(maxWidth: .infinity,alignment: .leading)
                         Text("Plant Care").font(.headline).frame(maxWidth: .infinity,alignment: .center)
-                        NavigationLink(destination: AddPlantView(viewContext: _viewContext)) {
+                        NavigationLink(destination: AddPlantView(viewContext: _viewContext,selectedItem: Reminder())) {
                             Image(systemName: "plus")
                         }.frame(maxWidth: .infinity,alignment: .trailing)
                     }
@@ -67,18 +70,6 @@ struct ContentView: View {
             requestPermissions()
         }
     }
-    
-    func removeLanguages(item : FetchedResults<Reminder>) {
-        //        for index in offsets {
-        //            let item = reminderItems[index]
-        //            managedObjectContext.delete(item)
-        //            try? viewContext.save()
-        try viewContext.delete(item.first!)
-        
-        //        }
-        
-    }
-    
 }
 
 struct ContentView_Previews: PreviewProvider {
