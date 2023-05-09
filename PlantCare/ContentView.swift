@@ -16,29 +16,37 @@ struct ContentView: View {
     
     
     private func requestPermissions() {
-            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
-                if success {
-//                    permissionGranted = true
-                } else if let error = error {
-                    print(error.localizedDescription)
-                }
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+            if success {
+                // permissionGranted = true
+            } else if let error = error {
+                print(error.localizedDescription)
             }
         }
+    }
     
     var body: some View {
-        
         NavigationStack {
             List {
                 ForEach(reminderItems,id: \.self) { item in
                     HStack{
-                        Image("plant")
+                        Image(uiImage: (UIImage(data: item.image ?? Data()) ?? UIImage(systemName: "photo.circle")) ?? UIImage())
+                            .renderingMode(.original)
                             .resizable()
-                            .frame(width: 32.0, height: 32.0)
+                            .frame(width: 70.0, height: 70.0)
+                            .cornerRadius(50)
                         VStack(alignment: .leading, spacing: 10) {
                             Text(verbatim: item.name ?? "-")
                             Text(verbatim: item.type ?? "-")
                             Text(verbatim: item.note ?? "-")
                         }.padding(10)
+                        Button(action: {
+                            print("button pressed")
+                            viewContext.delete(item)
+                        }) {
+                            Image(systemName: "trash")
+                                .renderingMode(.original)
+                        }.frame(maxWidth: .infinity, alignment: .trailing)
                     }
                     
                 }
@@ -59,6 +67,18 @@ struct ContentView: View {
             requestPermissions()
         }
     }
+    
+    func removeLanguages(item : FetchedResults<Reminder>) {
+        //        for index in offsets {
+        //            let item = reminderItems[index]
+        //            managedObjectContext.delete(item)
+        //            try? viewContext.save()
+        try viewContext.delete(item.first!)
+        
+        //        }
+        
+    }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

@@ -13,9 +13,8 @@ struct AddPlantView: View {
         let yourFireDate = selectedDate
         let content = UNMutableNotificationContent()
         content.title = NSString.localizedUserNotificationString(forKey:
-                                                                    "Your notification title", arguments: nil)
-        content.body = NSString.localizedUserNotificationString(forKey: "Your notification body", arguments: nil)
-//        content.categoryIdentifier = "Your notification category"
+                                                                    "Reminder", arguments: nil)
+        content.body = NSString.localizedUserNotificationString(forKey: "Reminder for Test Task", arguments: nil)
         content.sound = UNNotificationSound.default
         content.badge = 1
         
@@ -33,11 +32,16 @@ struct AddPlantView: View {
         })
     }
     @Environment(\.managedObjectContext) var viewContext
+    @Environment(\.presentationMode) var presentationMode
     
     @State private var selectedDate : Date = .now
     @State var nickName: String = ""
     @State var typeOfPlant : String = ""
     @State var cutomerNotes: String = ""
+    @State var showImagePicker: Bool = false
+    @State var image: UIImage? = UIImage()
+    @State private var showingAlert = false
+    @State private var alertMessage : String = ""
     
     var body: some View {
         VStack(alignment: .center,spacing: 30) {
@@ -45,15 +49,57 @@ struct AddPlantView: View {
             TextField("Type of Plant", text: $typeOfPlant).textFieldStyle(.roundedBorder)
             TextField("Add Notes", text: $cutomerNotes) .textFieldStyle(RoundedBorderTextFieldStyle())
             DatePicker("Reminder Date/Time",selection: $selectedDate, displayedComponents: [.date,.hourAndMinute])
+            HStack{
+                Button(action: {
+                    self.showImagePicker.toggle()
+                }) {
+                    Text("Pick an image")
+                }.sheet(isPresented: $showImagePicker) {
+                    ImagePicker(sourceType: .photoLibrary) { image in
+                        self.image = image
+                    }
+                }
+                
+                Image(uiImage: self.image!)
+                    .resizable()
+                    .cornerRadius(75)
+                    .padding(.all, 4)
+                    .frame(width: 120, height: 120)
+                    .background(Color.black.opacity(0.2))
+                    .aspectRatio(contentMode: .fill)
+                    .clipShape(Circle())
+                    .padding(8)
+            }
+            .alert(alertMessage, isPresented: $showingAlert) {
+                Button("OK", role: .cancel) { }
+            }
+            
             Button("Save Reminder") {
+                if nickName == "" {
+                    showingAlert = true
+                    alertMessage = "Please enter nick name"
+                    return
+                } else if typeOfPlant == "" {
+                    showingAlert = true
+                    alertMessage = "Please enter plant type"
+                    return
+                }
+                else if cutomerNotes == "" {
+                    showingAlert = true
+                    alertMessage = "Please enter notes"
+                    return
+                }
+                
+                let pickedImage = image?.jpegData(compressionQuality: 1.0)
                 let newTask = Reminder(context: viewContext)
                 newTask.name = nickName
                 newTask.type = typeOfPlant
                 newTask.note = cutomerNotes
                 newTask.date = selectedDate
+                newTask.image = pickedImage
                 try? viewContext.save()
                 sendNotification()
-                
+                presentationMode.wrappedValue.dismiss()
             }.buttonStyle(.borderedProminent).frame(maxWidth: .infinity)
         }.padding(20)
     }

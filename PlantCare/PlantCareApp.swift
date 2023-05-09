@@ -15,9 +15,6 @@ struct PlantCareApp: App {
     
     var body: some Scene {
         WindowGroup {
-            
-           
-            
             ContentView()
                 .environmentObject(manager)
                 .environment(\.managedObjectContext, manager.container.viewContext)
