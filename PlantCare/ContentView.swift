@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  PlantCare
 //
-//  Created by Taimoor  on 24/04/2023.
+//  Created by Admin  on 24/04/2023.
 //
 
 import SwiftUI
@@ -12,10 +12,13 @@ struct ContentView: View {
     
     @EnvironmentObject var manager: DataManager
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(entity: Reminder.entity(),sortDescriptors: []) private var reminderItems: FetchedResults<Reminder>
+    @FetchRequest(entity: Reminder.entity(),sortDescriptors: [])
+    private var reminderItems: FetchedResults<Reminder>
     @State var isInfoModal: Bool = false
     @State var isReminderModal: Bool = false
+    private var selectedItem: FetchedResults<Reminder>.Element = Reminder.init()
 //    @State var isReminderModal: Bool = false
+    @State var id: Int = 0
     
     private func requestPermissions() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
@@ -53,9 +56,14 @@ struct ContentView: View {
                             Image(systemName: "i.circle").onTapGesture {
                                 print("button C pressed")
                                 self.isReminderModal = true
+                                print("*** \(item)")
+                                id = item.id.hashValue
+//                                selectedItem = item
                             }.frame(maxWidth: .infinity, alignment: .trailing)
                                 .sheet(isPresented: $isReminderModal, content: {
-                                    AddReminderView()
+                                        AddReminderView(reminderItems: item)
+//                                    }
+                                    
                                 })
                             Image(systemName: "trash").onTapGesture {
                                 print("button A pressed")
@@ -94,8 +102,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView().environmentObject(DataManager())
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView().environmentObject(DataManager())
+//    }
+//}

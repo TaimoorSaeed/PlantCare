@@ -2,7 +2,7 @@
 //  AddPlantView.swift
 //  PlantCare
 //
-//  Created by Taimoor  on 24/04/2023.
+//  Created by Admin  on 24/04/2023.
 //
 
 import SwiftUI
@@ -43,6 +43,7 @@ struct AddPlantView: View {
     @State private var showingAlert = false
     @State private var alertMessage : String = ""
     @State var selectedItem = Reminder()
+    
     //    @State var plants = Plants(
     @State var books = [Datum]()
     @State private var showPicker = false

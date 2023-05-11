@@ -12,6 +12,8 @@ struct AddReminderView: View {
     @Environment(\.managedObjectContext) var viewContext
     @Environment(\.presentationMode) var presentationMode
     @State var image: UIImage? = UIImage()
+    //    @Binding var newValue: Reminder
+    var reminderItems: FetchedResults<Reminder>.Element
     
     private func sendNotification() {
         let yourFireDate = selectedDate
@@ -45,7 +47,7 @@ struct AddReminderView: View {
     
     var body: some View {
         
-        VStack(spacing: 10) {
+        VStack(spacing: 15) {
             DatePicker("Reminder Date/Time",selection: $selectedDate, displayedComponents: [.date,.hourAndMinute])
             HStack{
                 Button(action: {
@@ -73,53 +75,28 @@ struct AddReminderView: View {
             }
             
             Button("Save Reminder") {
-    //            if nickName == "" {
-    //                showingAlert = true
-    //                alertMessage = "Please enter nick name"
-    //                return
-    //            } else if typeOfPlant == "" {
-    //                showingAlert = true
-    //                alertMessage = "Please enter plant type"
-    //                return
-    //            }
-    //            else if cutomerNotes == "" {
-    //                showingAlert = true
-    //                alertMessage = "Please enter notes"
-    //                return
-    //            }
                 
                 let pickedImage = image?.jpegData(compressionQuality: 1.0)
+                reminderItems.date = selectedDate
+                reminderItems.image = pickedImage
                 
-                if selectedItem.managedObjectContext != nil {
-    //                selectedItem.name = nickName
-    //                selectedItem.type = typeOfPlant
-    //                selectedItem.note = cutomerNotes
-                    selectedItem.date = selectedDate
-                    selectedItem.image = pickedImage
-                    try? viewContext.save()
-                } else {
-                    let newTask = Reminder(context: viewContext)
-    //                newTask.name = nickName
-    //                newTask.type = typeOfPlant
-    //                newTask.note = cutomerNotes
-                    newTask.date = selectedDate
-                    newTask.image = pickedImage
-                    try? viewContext.save()
-                    sendNotification()
-                }
+                try? viewContext.save()
                 
                 presentationMode.wrappedValue.dismiss()
-            }.buttonStyle(.borderedProminent).frame(maxWidth: .infinity)
-        }.padding(10)
-       
+            }
+            
+            
+        }.buttonStyle(.borderedProminent).frame(maxWidth: .infinity).padding(15)
     }
     
 }
 
-struct AddReminderView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddReminderView()
-    }
-}
+
+//
+//struct AddReminderView_Previews: PreviewProvider {
+//    static var previews: some View {
+////        AddReminderView( newValue: Reminder())
+//    }
+//}
 
 
