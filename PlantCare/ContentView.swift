@@ -29,7 +29,7 @@ struct ContentView: View {
         NavigationStack {
             List {
                 ForEach(reminderItems,id: \.self) { item in
-                    NavigationLink(destination: AddPlantView(selectedItem : item)) {
+//                    NavigationLink(destination: AddPlantView(selectedItem : item)) {
                         HStack{
                             Image(uiImage: (UIImage(data: item.image ?? Data()) ?? UIImage(systemName: "photo.circle")) ?? UIImage())
                                 .renderingMode(.original)
@@ -48,12 +48,33 @@ struct ContentView: View {
                                 Image(systemName: "trash")
                                     .renderingMode(.original)
                             }.frame(maxWidth: .infinity, alignment: .trailing)
+//                            NavigationLink(destination: AddPlantView(selectedItem: item)) {
+//                                Image(systemName: "arrow.right")
+//                            }.frame(maxWidth: .infinity,alignment: .trailing)
+//                            Button(action: {
+//                                print("button pressed")
+//                                viewContext.delete(item)
+//                            }) {
+//                                Image(systemName: "arrow.right")
+//                                    .renderingMode(.original)
+//                            }.frame(maxWidth: .infinity, alignment: .trailing)
                         }
-                    }
+//                    }
                     
                     
                 }
             }
+            .overlay(Group {
+             if reminderItems.isEmpty {
+                 VStack{
+                     Text("Add + button to add plants")
+                     Image("plant")
+                       .resizable()
+                       .frame(width: 100, height: 100)
+                    }
+                 }
+                
+            })
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
