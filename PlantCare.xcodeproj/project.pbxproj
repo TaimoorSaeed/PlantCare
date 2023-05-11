@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84AFD0432A0D422B00D10CD8 /* AddReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AFD0422A0D422B00D10CD8 /* AddReminderView.swift */; };
+		84AFD0452A0D454100D10CD8 /* AddNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AFD0442A0D454100D10CD8 /* AddNotesView.swift */; };
 		8D8EC34C29F60610005E51DB /* PlantCareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8EC34B29F60610005E51DB /* PlantCareApp.swift */; };
 		8D8EC34E29F60610005E51DB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8EC34D29F60610005E51DB /* ContentView.swift */; };
 		8D8EC35329F60614005E51DB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D8EC35229F60614005E51DB /* Preview Assets.xcassets */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		84AFD0422A0D422B00D10CD8 /* AddReminderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReminderView.swift; sourceTree = "<group>"; };
+		84AFD0442A0D454100D10CD8 /* AddNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNotesView.swift; sourceTree = "<group>"; };
 		8D8EC34829F60610005E51DB /* PlantCare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlantCare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D8EC34B29F60610005E51DB /* PlantCareApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantCareApp.swift; sourceTree = "<group>"; };
 		8D8EC34D29F60610005E51DB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -72,6 +76,8 @@
 				8DE392BE29F6D5CA006ED8D4 /* AddPlantView.swift */,
 				8DCD20D42A01A23400CDEC2A /* DataManager.swift */,
 				8DBC32532A0A3973005BC0E2 /* ImagePicker.swift */,
+				84AFD0422A0D422B00D10CD8 /* AddReminderView.swift */,
+				84AFD0442A0D454100D10CD8 /* AddNotesView.swift */,
 			);
 			path = PlantCare;
 			sourceTree = "<group>";
@@ -166,10 +172,12 @@
 			files = (
 				8DE392BF29F6D5CA006ED8D4 /* AddPlantView.swift in Sources */,
 				8D8EC34E29F60610005E51DB /* ContentView.swift in Sources */,
+				84AFD0432A0D422B00D10CD8 /* AddReminderView.swift in Sources */,
 				8DCD20D32A01A1B400CDEC2A /* Reminders.xcdatamodeld in Sources */,
 				8DBC32542A0A3973005BC0E2 /* ImagePicker.swift in Sources */,
 				8D8EC34C29F60610005E51DB /* PlantCareApp.swift in Sources */,
 				8DCD20D52A01A23400CDEC2A /* DataManager.swift in Sources */,
+				84AFD0452A0D454100D10CD8 /* AddNotesView.swift in Sources */,
 				8DCD20D72A01A2AC00CDEC2A /* ReminderItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

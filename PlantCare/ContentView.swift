@@ -13,7 +13,9 @@ struct ContentView: View {
     @EnvironmentObject var manager: DataManager
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: Reminder.entity(),sortDescriptors: []) private var reminderItems: FetchedResults<Reminder>
-    
+    @State var isInfoModal: Bool = false
+    @State var isReminderModal: Bool = false
+//    @State var isReminderModal: Bool = false
     
     private func requestPermissions() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
@@ -29,50 +31,49 @@ struct ContentView: View {
         NavigationStack {
             List {
                 ForEach(reminderItems,id: \.self) { item in
-//                    NavigationLink(destination: AddPlantView(selectedItem : item)) {
-                        HStack{
-                            Image(uiImage: (UIImage(data: item.image ?? Data()) ?? UIImage(systemName: "photo.circle")) ?? UIImage())
-                                .renderingMode(.original)
-                                .resizable()
-                                .frame(width: 70.0, height: 70.0)
-                                .cornerRadius(50)
-                            VStack(alignment: .leading, spacing: 10) {
-                                Text(verbatim: item.name ?? "-")
-                                Text(verbatim: item.type ?? "-")
-                                Text(verbatim: item.note ?? "-")
-                            }.padding(10)
-                            Button(action: {
-                                print("button pressed")
-                                viewContext.delete(item)
-                            }) {
-                                Image(systemName: "trash")
-                                    .renderingMode(.original)
+                    HStack{
+                        Image(uiImage: (UIImage(data: item.image ?? Data()) ?? UIImage(systemName: "photo.circle")) ?? UIImage())
+                            .renderingMode(.original)
+                            .resizable()
+                            .frame(width: 70.0, height: 70.0)
+                            .cornerRadius(50)
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text(verbatim: item.name ?? "-")
+                            Text(verbatim: item.type ?? "-")
+                            Text(verbatim: item.note ?? "-")
+                        }.padding(10)
+                        VStack(spacing: 10) {
+                            
+                            Image(systemName: "bell").onTapGesture {
+                                print("button B pressed")
+                                isInfoModal = true
+                            }.frame(maxWidth: .infinity, alignment: .trailing).sheet(isPresented: $isInfoModal, content: {
+                                AddNotesView()
+                            })
+                            Image(systemName: "i.circle").onTapGesture {
+                                print("button C pressed")
+                                self.isReminderModal = true
                             }.frame(maxWidth: .infinity, alignment: .trailing)
-//                            NavigationLink(destination: AddPlantView(selectedItem: item)) {
-//                                Image(systemName: "arrow.right")
-//                            }.frame(maxWidth: .infinity,alignment: .trailing)
-//                            Button(action: {
-//                                print("button pressed")
-//                                viewContext.delete(item)
-//                            }) {
-//                                Image(systemName: "arrow.right")
-//                                    .renderingMode(.original)
-//                            }.frame(maxWidth: .infinity, alignment: .trailing)
+                                .sheet(isPresented: $isReminderModal, content: {
+                                    AddReminderView()
+                                })
+                            Image(systemName: "trash").onTapGesture {
+                                print("button A pressed")
+                                viewContext.delete(item)
+                            }.frame(maxWidth: .infinity, alignment: .trailing)
                         }
-//                    }
-                    
-                    
+                    }
                 }
             }
             .overlay(Group {
-             if reminderItems.isEmpty {
-                 VStack{
-                     Text("Add + button to add plants")
-                     Image("plant")
-                       .resizable()
-                       .frame(width: 100, height: 100)
+                if reminderItems.isEmpty {
+                    VStack{
+                        Text("Add + button to add plants")
+                        Image("plant")
+                            .resizable()
+                            .frame(width: 100, height: 100)
                     }
-                 }
+                }
                 
             })
             .navigationBarTitleDisplayMode(.inline)
