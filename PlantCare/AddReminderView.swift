@@ -15,28 +15,6 @@ struct AddReminderView: View {
     //    @Binding var newValue: Reminder
     var reminderItems: FetchedResults<Reminder>.Element
     
-    private func sendNotification() {
-        let yourFireDate = selectedDate
-        let content = UNMutableNotificationContent()
-        content.title = NSString.localizedUserNotificationString(forKey:
-                                                                    "Reminder", arguments: nil)
-        content.body = NSString.localizedUserNotificationString(forKey: "Reminder for Test Task", arguments: nil)
-        content.sound = UNNotificationSound.default
-        content.badge = 1
-        
-        let dateComponents = Calendar.current.dateComponents(Set(arrayLiteral: Calendar.Component.year, Calendar.Component.month, Calendar.Component.day), from: yourFireDate)
-        
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-        
-        let request = UNNotificationRequest(identifier: "Your notification identifier", content: content, trigger: trigger)
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
-            if let error = error {
-                //handle error
-            } else {
-                //notification set up successfully
-            }
-        })
-    }
     
     
     @State private var selectedDate : Date = .now
@@ -47,14 +25,14 @@ struct AddReminderView: View {
     
     
     var body: some View {
-    
+        
         VStack(spacing: 15) {
             Text("Add Reminder").font(.headline).padding(10)
             DatePicker("Reminder Date/Time",selection: $selectedDate, displayedComponents: [.date,.hourAndMinute])
             HStack{
                 Button(action: {
                     self.showImagePicker.toggle()
-//                    self.image = UIImage(data: reminderItems.image ?? Data()) ?? UIImage(systemName: "photo.circle") ?? UIImage()
+                    //                    self.image = UIImage(data: reminderItems.image ?? Data()) ?? UIImage(systemName: "photo.circle") ?? UIImage()
                 }) {
                     Text("Pick an image")
                 }.sheet(isPresented: $showImagePicker) {
@@ -86,16 +64,39 @@ struct AddReminderView: View {
                 reminderItems.image = pickedImage
                 
                 try? viewContext.save()
-                
+                sendNotification(data: selectedDate)
                 presentationMode.wrappedValue.dismiss()
             }
-//            .onAppear {
-//                print("ContentView appeared!")
-//    //            self.image = UIImage(data: reminderItems.image ?? Data()) ?? UIImage(systemName: "photo.circle") ?? UIImage()
-//            }
+            //            .onAppear {
+            //                print("ContentView appeared!")
+            //    //            self.image = UIImage(data: reminderItems.image ?? Data()) ?? UIImage(systemName: "photo.circle") ?? UIImage()
+            //            }
             
             
         }.buttonStyle(.borderedProminent).frame(maxWidth: .infinity).padding(15)
+    }
+    
+    private func sendNotification(data: Date) {
+        let yourFireDate = selectedDate
+        let content = UNMutableNotificationContent()
+        content.title = NSString.localizedUserNotificationString(forKey:
+                                                                    "Reminder", arguments: nil)
+        content.body = NSString.localizedUserNotificationString(forKey: "Reminder for Test Task", arguments: nil)
+        content.sound = UNNotificationSound.default
+        content.badge = 1
+        
+        let dateComponents = Calendar.current.dateComponents(Set(arrayLiteral: Calendar.Component.year, Calendar.Component.month, Calendar.Component.day), from: yourFireDate)
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        
+        let request = UNNotificationRequest(identifier: "Your notification identifier", content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
+            if let error = error {
+                //handle error
+            } else {
+                //notification set up successfully
+            }
+        })
     }
     
 }

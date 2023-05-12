@@ -56,9 +56,9 @@ struct ContentView: View {
                                 id = item.id.hashValue
                                 selectedItem = item
                             }.frame(maxWidth: .infinity, alignment: .trailing)
-//                                .sheet(isPresented: $isInfoModal, content: {
-//                                AddNotesView(reminderItems: item)
-//                            })
+                            //                                .sheet(isPresented: $isInfoModal, content: {
+                            //                                AddNotesView(reminderItems: item)
+                            //                            })
                             Image(systemName: "i.circle").onTapGesture {
                                 print("button C pressed")
                                 self.isReminderModal = true
@@ -72,41 +72,43 @@ struct ContentView: View {
                             }.frame(maxWidth: .infinity, alignment: .trailing)
                         }
                     }
-                }
+                }.listRowBackground(Color(hex: 0x8cd959))
             }
-            .overlay(Group {
-                if reminderItems.isEmpty {
-                    VStack{
-                        Text("Add + button to add plants")
-                        Image("plant")
-                            .resizable()
-                            .frame(width: 100, height: 100)
+                .overlay(Group {
+                    if reminderItems.isEmpty {
+                        VStack{
+                            Text("Add + button to add plants")
+                            Image("plant")
+                                .resizable()
+                                .frame(width: 100, height: 100)
+                        }
+                    }
+                    
+                })
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        HStack {
+                            Spacer().frame(maxWidth: .infinity,alignment: .leading)
+                            Text("Plant Care").font(.headline).frame(maxWidth: .infinity,alignment: .center)
+                            NavigationLink(destination: AddPlantView(viewContext: _viewContext,selectedItem: Reminder())) {
+                                Image(systemName: "plus")
+                            }.frame(maxWidth: .infinity,alignment: .trailing)
+                        }
                     }
                 }
-                
-            })
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    HStack {
-                        Spacer().frame(maxWidth: .infinity,alignment: .leading)
-                        Text("Plant Care").font(.headline).frame(maxWidth: .infinity,alignment: .center)
-                        NavigationLink(destination: AddPlantView(viewContext: _viewContext,selectedItem: Reminder())) {
-                            Image(systemName: "plus")
-                        }.frame(maxWidth: .infinity,alignment: .trailing)
-                    }
-                }
-            }
-        }.onAppear{
+        }
+        .onAppear{
             requestPermissions()
         }
         .sheet(isPresented: $isReminderModal, content: {
             AddReminderView(reminderItems: selectedItem)
         })
         .sheet(isPresented: $isNotesModal, content: {
-//            AddReminderView(reminderItems: selectedItem)
+            //AddReminderView(reminderItems: selectedItem)
             AddNotesView(reminderItems: selectedItem)
         })
+        
         
     }
 }
@@ -116,3 +118,17 @@ struct ContentView: View {
 //        ContentView().environmentObject(DataManager())
 //    }
 //}
+
+extension Color {
+    init(hex: UInt, alpha: Double = 1) {
+        self.init(
+            .sRGB,
+            red: Double((hex >> 16) & 0xff) / 255,
+            green: Double((hex >> 08) & 0xff) / 255,
+            blue: Double((hex >> 00) & 0xff) / 255,
+            opacity: alpha
+        )
+    }
+}
+
+
