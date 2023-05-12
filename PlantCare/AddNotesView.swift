@@ -10,7 +10,7 @@ import SwiftUI
 struct AddNotesView: View {
     
     @State var cutomerNotes: String = ""
-    var reminderItems: FetchedResults<Reminder>.Element
+    @Binding var reminderItems: FetchedResults<Reminder>.Element
     @Environment(\.managedObjectContext) var viewContext
     @Environment(\.presentationMode) var presentationMode
     
@@ -28,6 +28,9 @@ struct AddNotesView: View {
             }.buttonStyle(.borderedProminent).frame(maxWidth: .infinity)
         }.padding(15).onAppear{
             //            fetch()
+        }.onAppear {
+            print("ContentView appeared!")
+            cutomerNotes = reminderItems.note ?? ""
         }
         
     }
