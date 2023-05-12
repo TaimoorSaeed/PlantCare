@@ -17,7 +17,6 @@
 		8DCD20D52A01A23400CDEC2A /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCD20D42A01A23400CDEC2A /* DataManager.swift */; };
 		8DCD20D72A01A2AC00CDEC2A /* ReminderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCD20D62A01A2AC00CDEC2A /* ReminderItem.swift */; };
 		8DE392B929F6CFBB006ED8D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D8EC34F29F60614005E51DB /* Assets.xcassets */; };
-		8DE392BB29F6D1EB006ED8D4 /* pizza.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DE392BA29F6D1EB006ED8D4 /* pizza.png */; };
 		8DE392BF29F6D5CA006ED8D4 /* AddPlantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE392BE29F6D5CA006ED8D4 /* AddPlantView.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,7 +32,6 @@
 		8DCD20D22A01A1B400CDEC2A /* Reminder.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Reminder.xcdatamodel; sourceTree = "<group>"; };
 		8DCD20D42A01A23400CDEC2A /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		8DCD20D62A01A2AC00CDEC2A /* ReminderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderItem.swift; sourceTree = "<group>"; };
-		8DE392BA29F6D1EB006ED8D4 /* pizza.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pizza.png; path = PlantCare/Assets.xcassets/pizza.imageset/pizza.png; sourceTree = "<group>"; };
 		8DE392BE29F6D5CA006ED8D4 /* AddPlantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlantView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -51,7 +49,6 @@
 		8D8EC33F29F60610005E51DB = {
 			isa = PBXGroup;
 			children = (
-				8DE392BA29F6D1EB006ED8D4 /* pizza.png */,
 				8D8EC34A29F60610005E51DB /* PlantCare */,
 				8D8EC34929F60610005E51DB /* Products */,
 			);
@@ -159,7 +156,6 @@
 			files = (
 				8DE392B929F6CFBB006ED8D4 /* Assets.xcassets in Resources */,
 				8D8EC35329F60614005E51DB /* Preview Assets.xcassets in Resources */,
-				8DE392BB29F6D1EB006ED8D4 /* pizza.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

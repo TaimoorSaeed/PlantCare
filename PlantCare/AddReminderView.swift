@@ -46,12 +46,13 @@ struct AddReminderView: View {
     @State var selectedItem = Reminder()
     
     var body: some View {
-        
+    
         VStack(spacing: 15) {
             DatePicker("Reminder Date/Time",selection: $selectedDate, displayedComponents: [.date,.hourAndMinute])
             HStack{
                 Button(action: {
                     self.showImagePicker.toggle()
+//                    self.image = UIImage(data: reminderItems.image ?? Data()) ?? UIImage(systemName: "photo.circle") ?? UIImage()
                 }) {
                     Text("Pick an image")
                 }.sheet(isPresented: $showImagePicker) {
@@ -77,13 +78,19 @@ struct AddReminderView: View {
             Button("Save Reminder") {
                 
                 let pickedImage = image?.jpegData(compressionQuality: 1.0)
+                
                 reminderItems.date = selectedDate
+                
                 reminderItems.image = pickedImage
                 
                 try? viewContext.save()
                 
                 presentationMode.wrappedValue.dismiss()
             }
+//            .onAppear {
+//                print("ContentView appeared!")
+//    //            self.image = UIImage(data: reminderItems.image ?? Data()) ?? UIImage(systemName: "photo.circle") ?? UIImage()
+//            }
             
             
         }.buttonStyle(.borderedProminent).frame(maxWidth: .infinity).padding(15)

@@ -18,21 +18,9 @@ struct AddNotesView: View {
                 
             }.buttonStyle(.borderedProminent).frame(maxWidth: .infinity)
         }.padding(15).onAppear{
-            fetch()
+//            fetch()
         }
        
-    }
-    
-    private func fetch() {
-//        if selectedItem.managedObjectContext != nil {
-//            print("***AAA \(selectedItem)")
-//            nickName = selectedItem.name ?? ""
-//            typeOfPlant = selectedItem.type ?? ""
-//            cutomerNotes = selectedItem.note ?? ""
-//            image =  UIImage(data: selectedItem.image ?? Data())
-//        } else {
-//            print("***CCC \(selectedItem)")
-//        }
     }
 }
 

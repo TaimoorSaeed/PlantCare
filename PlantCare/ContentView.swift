@@ -16,9 +16,10 @@ struct ContentView: View {
     private var reminderItems: FetchedResults<Reminder>
     @State var isInfoModal: Bool = false
     @State var isReminderModal: Bool = false
-    private var selectedItem: FetchedResults<Reminder>.Element = Reminder.init()
-//    @State var isReminderModal: Bool = false
+    @State var selectedItem: FetchedResults<Reminder>.Element = Reminder.init()
+    //    @State var isReminderModal: Bool = false
     @State var id: Int = 0
+    //    @State reminderItem: FetchedResults<Reminder>.Element =
     
     private func requestPermissions() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
@@ -58,13 +59,9 @@ struct ContentView: View {
                                 self.isReminderModal = true
                                 print("*** \(item)")
                                 id = item.id.hashValue
-//                                selectedItem = item
+                                //                                selectedItem = item
+                                selectedItem = item
                             }.frame(maxWidth: .infinity, alignment: .trailing)
-                                .sheet(isPresented: $isReminderModal, content: {
-                                        AddReminderView(reminderItems: item)
-//                                    }
-                                    
-                                })
                             Image(systemName: "trash").onTapGesture {
                                 print("button A pressed")
                                 viewContext.delete(item)
@@ -99,6 +96,12 @@ struct ContentView: View {
         }.onAppear{
             requestPermissions()
         }
+        .sheet(isPresented: $isReminderModal, content: {
+            AddReminderView(reminderItems: selectedItem)
+            //                                    }
+            
+        })
+        
     }
 }
 
