@@ -19,7 +19,9 @@ struct AddNotesView: View {
             Text("Add Notes").font(.headline).padding(10)
             TextField("Enter Notes", text: $cutomerNotes) .textFieldStyle(RoundedBorderTextFieldStyle())
             Button("Save Notes") {
+                
                 reminderItems.note = cutomerNotes
+                
                 try? viewContext.save()
                 
                 presentationMode.wrappedValue.dismiss()

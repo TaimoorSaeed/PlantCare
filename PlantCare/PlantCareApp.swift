@@ -15,7 +15,7 @@ struct PlantCareApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(selectedItem: Reminder.init())
                 .environmentObject(manager)
                 .environment(\.managedObjectContext, manager.container.viewContext)
         }

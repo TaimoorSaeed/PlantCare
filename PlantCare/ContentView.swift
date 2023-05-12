@@ -17,7 +17,7 @@ struct ContentView: View {
     @State var isInfoModal: Bool = false
     @State var isReminderModal: Bool = false
     @State var isNotesModal: Bool = false
-    @State var selectedItem: FetchedResults<Reminder>.Element = Reminder.init()
+    @State var selectedItem: FetchedResults<Reminder>.Element
     //    @State var isReminderModal: Bool = false
     @State var id: Int = 0
     //    @State reminderItem: FetchedResults<Reminder>.Element =
@@ -51,20 +51,23 @@ struct ContentView: View {
                             
                             Image(systemName: "bell").onTapGesture {
                                 print("button B pressed")
-                                self.isNotesModal = true
+                                
                                 print("*** \(item)")
-                                id = item.id.hashValue
-                                selectedItem = item
+//                                id = item.id.hashValue
+                                self.selectedItem = item
+                                self.isNotesModal = true
+                                
                             }.frame(maxWidth: .infinity, alignment: .trailing)
                             //                                .sheet(isPresented: $isInfoModal, content: {
                             //                                AddNotesView(reminderItems: item)
                             //                            })
                             Image(systemName: "i.circle").onTapGesture {
                                 print("button C pressed")
-                                self.isReminderModal = true
+                               
                                 print("*** \(item)")
-                                id = item.id.hashValue
-                                selectedItem = item
+//                                id = item.id.hashValue
+                                self.selectedItem = item
+                                self.isReminderModal = true
                             }.frame(maxWidth: .infinity, alignment: .trailing)
                             Image(systemName: "trash").onTapGesture {
                                 print("button A pressed")
@@ -102,10 +105,12 @@ struct ContentView: View {
             requestPermissions()
         }
         .sheet(isPresented: $isReminderModal, content: {
+//            print("*** \(selectedItem)")
             AddReminderView(reminderItems: selectedItem)
         })
         .sheet(isPresented: $isNotesModal, content: {
             //AddReminderView(reminderItems: selectedItem)
+//            print("*** \(selectedItem)")
             AddNotesView(reminderItems: selectedItem)
         })
         
