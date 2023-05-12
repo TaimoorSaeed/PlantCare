@@ -10,22 +10,29 @@ import SwiftUI
 struct AddNotesView: View {
     
     @State var cutomerNotes: String = ""
+    var reminderItems: FetchedResults<Reminder>.Element
+    @Environment(\.managedObjectContext) var viewContext
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         VStack(spacing: 15) {
             TextField("Add Notes", text: $cutomerNotes) .textFieldStyle(RoundedBorderTextFieldStyle())
             Button("Save Notes") {
                 
+                reminderItems.note = cutomerNotes
+                try? viewContext.save()
+                
+                presentationMode.wrappedValue.dismiss()
             }.buttonStyle(.borderedProminent).frame(maxWidth: .infinity)
         }.padding(15).onAppear{
-//            fetch()
+            //            fetch()
         }
-       
+        
     }
 }
 
-struct AddNotesView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddNotesView()
-    }
-}
+//struct AddNotesView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddNotesView()
+//    }
+//}

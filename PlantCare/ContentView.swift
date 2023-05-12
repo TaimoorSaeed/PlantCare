@@ -16,6 +16,7 @@ struct ContentView: View {
     private var reminderItems: FetchedResults<Reminder>
     @State var isInfoModal: Bool = false
     @State var isReminderModal: Bool = false
+    @State var isNotesModal: Bool = false
     @State var selectedItem: FetchedResults<Reminder>.Element = Reminder.init()
     //    @State var isReminderModal: Bool = false
     @State var id: Int = 0
@@ -50,16 +51,19 @@ struct ContentView: View {
                             
                             Image(systemName: "bell").onTapGesture {
                                 print("button B pressed")
-                                isInfoModal = true
-                            }.frame(maxWidth: .infinity, alignment: .trailing).sheet(isPresented: $isInfoModal, content: {
-                                AddNotesView()
-                            })
+                                self.isNotesModal = true
+                                print("*** \(item)")
+                                id = item.id.hashValue
+                                selectedItem = item
+                            }.frame(maxWidth: .infinity, alignment: .trailing)
+//                                .sheet(isPresented: $isInfoModal, content: {
+//                                AddNotesView(reminderItems: item)
+//                            })
                             Image(systemName: "i.circle").onTapGesture {
                                 print("button C pressed")
                                 self.isReminderModal = true
                                 print("*** \(item)")
                                 id = item.id.hashValue
-                                //                                selectedItem = item
                                 selectedItem = item
                             }.frame(maxWidth: .infinity, alignment: .trailing)
                             Image(systemName: "trash").onTapGesture {
@@ -98,8 +102,10 @@ struct ContentView: View {
         }
         .sheet(isPresented: $isReminderModal, content: {
             AddReminderView(reminderItems: selectedItem)
-            //                                    }
-            
+        })
+        .sheet(isPresented: $isNotesModal, content: {
+//            AddReminderView(reminderItems: selectedItem)
+            AddNotesView(reminderItems: selectedItem)
         })
         
     }
