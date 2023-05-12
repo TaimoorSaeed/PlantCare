@@ -106,7 +106,7 @@ struct ContentView: View {
         }
         .sheet(isPresented: $isReminderModal, content: {
 //            print("*** \(selectedItem)")
-            AddReminderView(reminderItems: selectedItem)
+            AddReminderView(reminderItems: $selectedItem)
         })
         .sheet(isPresented: $isNotesModal, content: {
             //AddReminderView(reminderItems: selectedItem)

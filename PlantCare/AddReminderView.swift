@@ -13,7 +13,7 @@ struct AddReminderView: View {
     @Environment(\.presentationMode) var presentationMode
     @State var image: UIImage? = UIImage()
     //    @Binding var newValue: Reminder
-    var reminderItems: FetchedResults<Reminder>.Element
+    @Binding var reminderItems: FetchedResults<Reminder>.Element
     
     
     
@@ -67,10 +67,11 @@ struct AddReminderView: View {
                 sendNotification(data: selectedDate)
                 presentationMode.wrappedValue.dismiss()
             }
-            //            .onAppear {
-            //                print("ContentView appeared!")
-            //    //            self.image = UIImage(data: reminderItems.image ?? Data()) ?? UIImage(systemName: "photo.circle") ?? UIImage()
-            //            }
+            .onAppear {
+                print("ContentView appeared!")
+                self.image = UIImage(data: reminderItems.image ?? Data()) ?? UIImage(systemName: "photo.circle") ?? UIImage()
+                self.selectedDate = reminderItems.date ?? Date()
+            }
             
             
         }.buttonStyle(.borderedProminent).frame(maxWidth: .infinity).padding(15)
