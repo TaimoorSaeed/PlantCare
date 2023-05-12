@@ -16,9 +16,9 @@ struct AddNotesView: View {
     
     var body: some View {
         VStack(spacing: 15) {
-            TextField("Add Notes", text: $cutomerNotes) .textFieldStyle(RoundedBorderTextFieldStyle())
+            Text("Add Notes").font(.headline).padding(10)
+            TextField("Enter Notes", text: $cutomerNotes) .textFieldStyle(RoundedBorderTextFieldStyle())
             Button("Save Notes") {
-                
                 reminderItems.note = cutomerNotes
                 try? viewContext.save()
                 

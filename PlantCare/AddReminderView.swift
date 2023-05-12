@@ -45,9 +45,11 @@ struct AddReminderView: View {
     @State private var showingAlert = false
     @State var selectedItem = Reminder()
     
+    
     var body: some View {
     
         VStack(spacing: 15) {
+            Text("Add Reminder").font(.headline).padding(10)
             DatePicker("Reminder Date/Time",selection: $selectedDate, displayedComponents: [.date,.hourAndMinute])
             HStack{
                 Button(action: {
